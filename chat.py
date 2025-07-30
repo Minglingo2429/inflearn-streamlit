@@ -1,7 +1,7 @@
 import streamlit as st
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import openai
-import pinecone
+from pinecone import Pinecone
 
 from llm import get_ai_response
 
@@ -13,8 +13,7 @@ st.caption("노동법에 관련된 모든 것을 답해드립니다!")
 # env 파일에서 API 키를 로드
 # Streamlit Secrets에서 키 로드
 openai.api_key = st.secrets["OPENAI_API_KEY"]
-pinecone.init(api_key=st.secrets["PINECONE_API_KEY"])  # env는 네가 쓰는 것에 따라 설정
-# load_dotenv()
+pc = Pinecone(api_key=st.secrets["PINECONE_API_KEY"])# load_dotenv()
 
 # 세션 상태 초기화 및 메시지 리스트 설정
 if 'message_list' not in st.session_state:
